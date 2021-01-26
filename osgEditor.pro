@@ -120,24 +120,11 @@ INCLUDEPATH += \
     ../OpenSceneGraph-3.4.1/include \
     ./glsl
 
-LIBS += \
-../QScintilla/lib/qscintilla2_qt5d.lib \
-../OpenSceneGraph-3.4.1/lib/osgViewerd.lib \
-../OpenSceneGraph-3.4.1/lib/osgGAd.lib \
-../OpenSceneGraph-3.4.1/lib/osgDBd.lib \
-../OpenSceneGraph-3.4.1/lib/osgUtild.lib \
-../OpenSceneGraph-3.4.1/lib/osgFXd.lib \
-../OpenSceneGraph-3.4.1/lib/osgd.lib \
-../OpenSceneGraph-3.4.1/lib/osgTextd.lib \
-../OpenSceneGraph-3.4.1/lib/osgManipulatord.lib \
-../OpenSceneGraph-3.4.1/lib/OpenThreadsd.lib
-
 DISTFILES += \
     glsl/README.txt
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../qscintilla/build-qscintilla-Qt_5_14_2_GCC_64bit-Debug/release/ -lqscintilla2_qt5
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../qscintilla/build-qscintilla-Qt_5_14_2_GCC_64bit-Debug/debug/ -lqscintilla2_qt5
-else:unix: LIBS += -L$$PWD/../qscintilla/build-qscintilla-Qt_5_14_2_GCC_64bit-Debug/ -lqscintilla2_qt5
+LIBS += -L$$PWD/../qscintilla/build-qscintilla-Qt_5_14_2_GCC_64bit-Debug/ -lqscintilla2_qt5
+LIBS += -losgGA -losgDB -losg -losgFX -losgViewer
 
 INCLUDEPATH += $$PWD/../qscintilla/Qt4Qt5
 DEPENDPATH += $$PWD/../qscintilla/Qt4Qt5

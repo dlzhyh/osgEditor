@@ -45,30 +45,31 @@ private:
 
     template<typename Type_t> PropertyTreeItem* CreateVectorItem(unsigned int index)
     {
-        auto getter = [this, index](size_t i)->Type_t::value_type
+        auto getter = [this, index](size_t )->Type_t
         {
             Type_t ret;
             if(osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->getElement(index, ret))
             {
-                return ret[i];
+                return ret;
             }
             else
             {
-                return Type_t::value_type(0);
+                return ret;
             }
         };
 
-        auto setter = [this, index](size_t i, Type_t::value_type v)
+        auto setter = [this, index](size_t i, Type_t v)
         {
             Type_t ret;
             if(osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->getElement(index, ret))
             {
-                ret[i] = v;
+                ret[i] = v[i];
                 osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->setElement(index, ret);
             }
         };
 
-        return new PropertyTreeVectorItem<Type_t::value_type>(this, QString::number(index + 1, 10), getter, setter, Type_t::num_components);
+        return nullptr;
+//        return new PropertyTreeVectorItem<Type_t::value_type>(this, QString::number(index + 1, 10), getter, setter, Type_t::num_components);
     }
 
     template<typename Type_t> PropertyTreeItem* CreateVector2Item(unsigned int index)
