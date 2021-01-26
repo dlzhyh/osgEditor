@@ -181,15 +181,15 @@ QVariant PropertyTreeAttributeListItem::data(int column, int role) const
 
 bool PropertyTreeAttributeListItem::setData(int column, const QVariant &value, int role)
 {
-    (column);
-    (value);
-    (role);
+    (void)(column);
+    (void)(value);
+    (void)(role);
     return true;
 }
 
 bool PropertyTreeAttributeListItem::afterPaint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    const int btnWidth = QApplication::fontMetrics().width(g_BtnText) + 26;
+    const int btnWidth = QApplication::fontMetrics().horizontalAdvance(g_BtnText) + 26;
     if(ptcValue == index.column())
     {
         m_ButtonRect = option.rect;
@@ -211,9 +211,9 @@ bool PropertyTreeAttributeListItem::afterPaint(QPainter *painter, const QStyleOp
 
 bool PropertyTreeAttributeListItem::editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index)
 {
-    (index);
-    (model);
-    (option);
+    (void)(index);
+    (void)(model);
+    (void)(option);
     QMouseEvent *mouseEvent = dynamic_cast<QMouseEvent*>(event);
     if(nullptr != mouseEvent)
     {

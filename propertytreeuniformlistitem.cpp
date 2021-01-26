@@ -19,7 +19,7 @@ PropertyTreeUniformListItem::~PropertyTreeUniformListItem()
 
 Qt::ItemFlags PropertyTreeUniformListItem::flags(int column) const
 {
-    return ((ptcValue == column) ? Qt::ItemIsEditable : 0) | PropertyTreeItem::flags(column);
+    return (Qt::ItemFlags)((ptcValue == column) ? Qt::ItemIsEditable : 0) | PropertyTreeItem::flags(column);
 }
 
 QVariant PropertyTreeUniformListItem::data(int column, int role) const
@@ -39,16 +39,16 @@ QVariant PropertyTreeUniformListItem::data(int column, int role) const
 
 bool PropertyTreeUniformListItem::setData(int column, const QVariant &value, int role)
 {
-    (column);
-    (value);
-    (role);
+    (void)(column);
+    (void)(value);
+    (void)(role);
     return true;
 }
 
 bool PropertyTreeUniformListItem::createEditor(QWidget*& editor, QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    (option);
-    (index);
+    (void)(option);
+    (void)(index);
     editor = new QPushButton(parent);
     dynamic_cast<QPushButton*>(editor)->setText(tr("Add"));
     connect(dynamic_cast<QPushButton*>(editor), &QPushButton::clicked, this, &PropertyTreeUniformListItem::buttonClicked);
@@ -57,22 +57,22 @@ bool PropertyTreeUniformListItem::createEditor(QWidget*& editor, QWidget* parent
 
 bool PropertyTreeUniformListItem::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
-    (editor);
-    (index);
+    (void)(editor);
+    (void)(index);
     return true;
 }
 
 bool PropertyTreeUniformListItem::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
-    (editor);
-    (model);
-    (index);
+    (void)(editor);
+    (void)(model);
+    (void)(index);
     return true;
 }
 
 bool PropertyTreeUniformListItem::updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    (index);
+    (void)(index);
     QRect rect = option.rect;
     if(rect.width() > editor->width())
     {
@@ -84,6 +84,6 @@ bool PropertyTreeUniformListItem::updateEditorGeometry(QWidget* editor, const QS
 
 void PropertyTreeUniformListItem::buttonClicked(bool checked)
 {
-    (checked);
+    (void)(checked);
     //todo: Add a mode item.
 }

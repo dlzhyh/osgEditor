@@ -4,6 +4,7 @@
 #include "propertytreeitem.h"
 
 #include <QApplication>
+#include <QMouseEvent>
 
 #include <functional>
 #include <vector>
@@ -44,7 +45,7 @@ public:
 
     virtual Qt::ItemFlags flags(int column) const
     {
-        return ((!!m_Setter && ptcValue == column) ? Qt::ItemIsEditable : 0) | PropertyTreeItem::flags(column);
+        return (Qt::ItemFlags)((!!m_Setter && ptcValue == column) ? Qt::ItemIsEditable : 0) | PropertyTreeItem::flags(column);
     }
 
     virtual QVariant data(int column, int role) const
@@ -94,9 +95,9 @@ public:
 
     virtual bool editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index)
     {
-        (index);
-        (model);
-        (option);
+        (void)(index);
+        (void)(model);
+        (void)(option);
         QMouseEvent *mouseEvent = dynamic_cast<QMouseEvent*>(event);
         if(nullptr != mouseEvent)
         {
@@ -140,7 +141,7 @@ private:
     {
         if(rect.width() > 0)
         {
-            int btnWidth = QApplication::fontMetrics().width(text) + 26;
+            int btnWidth = QApplication::fontMetrics().horizontalAdvance(text) + 26;
 
             if(rect.width() > btnWidth)
             {

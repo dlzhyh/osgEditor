@@ -40,15 +40,15 @@ PropertyTreeAttributeProgramItem::PropertyTreeAttributeProgramItem(PropertyTreeM
         }));
         m_ChildItems.push_back(new PropertyTreePropertyItem(this, "Attribute count", [this](const PropertyTreePropertyItem*)->QVariant
         {
-            return QVariant(this->m_AttributeCount);
+            return QVariant((int)this->m_AttributeCount);
         }));
         m_ChildItems.push_back(new PropertyTreePropertyItem(this, "Uniform count", [this](const PropertyTreePropertyItem*)->QVariant
         {
-            return QVariant(this->m_UniformCount);
+            return QVariant((int)this->m_UniformCount);
         }));
         m_ChildItems.push_back(new PropertyTreePropertyItem(this, "Uniform block count", [this](const PropertyTreePropertyItem*)->QVariant
         {
-            return QVariant(this->m_UniformBlockCount);
+            return QVariant((int)this->m_UniformBlockCount);
         }));
         for(size_t i = 0;i < m_Program->getNumShaders();++i)
         {
@@ -90,9 +90,9 @@ QVariant PropertyTreeAttributeProgramItem::data(int column, int role) const
 
 bool PropertyTreeAttributeProgramItem::setData(int column, const QVariant &value, int role)
 {
-    (column);
-    (value);
-    (role);
+    (void)(column);
+    (void)(value);
+    (void)(role);
     return true;
 }
 
@@ -120,9 +120,9 @@ bool PropertyTreeAttributeProgramItem::afterPaint(QPainter *painter, const QStyl
 
 bool PropertyTreeAttributeProgramItem::editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index)
 {
-    (index);
-    (model);
-    (option);
+    (void)(index);
+    (void)(model);
+    (void)(option);
     QMouseEvent *mouseEvent = dynamic_cast<QMouseEvent*>(event);
     if(nullptr != mouseEvent)
     {

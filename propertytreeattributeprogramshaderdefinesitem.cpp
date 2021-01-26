@@ -11,7 +11,7 @@ const QString g_BtnText(QObject::tr("create"));
 
 PropertyTreeAttributeProgramShaderDefinesItem::PropertyTreeAttributeProgramShaderDefinesItem(PropertyTreeItem *parent, osg::Program* program)
     : PropertyTreeItem(parent)
-    , m_ShaderDefines(program->getShaderDefines())
+    , m_ShaderDefines(program->getShader(0)->getShaderDefines())
     , m_State(QStyle::State_Raised)
 {
     for(auto i = m_ShaderDefines.begin();i != m_ShaderDefines.end();++i)
@@ -49,15 +49,15 @@ QVariant PropertyTreeAttributeProgramShaderDefinesItem::data(int column, int rol
 
 bool PropertyTreeAttributeProgramShaderDefinesItem::setData(int column, const QVariant &value, int role)
 {
-    (column);
-    (value);
-    (role);
+    (void)(column);
+    (void)(value);
+    (void)(role);
     return true;
 }
 
 bool PropertyTreeAttributeProgramShaderDefinesItem::afterPaint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    const int btnWidth = QApplication::fontMetrics().width(g_BtnText) + 26;
+    const int btnWidth = QApplication::fontMetrics().horizontalAdvance(g_BtnText) + 26;
     if(ptcValue == index.column())
     {
         m_ButtonRect = option.rect;
@@ -79,9 +79,9 @@ bool PropertyTreeAttributeProgramShaderDefinesItem::afterPaint(QPainter *painter
 
 bool PropertyTreeAttributeProgramShaderDefinesItem::editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index)
 {
-    (index);
-    (model);
-    (option);
+    (void)(index);
+    (void)(model);
+    (void)(option);
     QMouseEvent *mouseEvent = dynamic_cast<QMouseEvent*>(event);
     if(nullptr != mouseEvent)
     {

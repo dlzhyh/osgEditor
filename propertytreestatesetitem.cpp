@@ -5,6 +5,7 @@
 #include "propertytreemodel.h"
 
 #include <QApplication>
+#include <QMouseEvent>
 
 PropertyTreeStateSetItem::PropertyTreeStateSetItem(PropertyTreeItem *parent, const QString& name, const StateSetGetter_t& creator, const StateSetGetter_t& getter)
     : PropertyTreeItem(parent)

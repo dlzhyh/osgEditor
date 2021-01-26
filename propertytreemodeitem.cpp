@@ -147,7 +147,7 @@ PropertyTreeModeItem::~PropertyTreeModeItem()
 
 Qt::ItemFlags PropertyTreeModeItem::flags(int column) const
 {
-    return ((ptcValue == column) ? Qt::ItemIsEditable : 0) | PropertyTreeItem::flags(column);
+    return (Qt::ItemFlags)((ptcValue == column) ? Qt::ItemIsEditable : 0) | PropertyTreeItem::flags(column);
 }
 
 QVariant PropertyTreeModeItem::data(int column, int role) const

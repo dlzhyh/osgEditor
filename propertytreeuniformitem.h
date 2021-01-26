@@ -7,6 +7,7 @@
 
 #include <osg/ref_ptr>
 #include <osg/StateSet>
+#include <osg/Uniform>
 
 class PropertyTreeUniformItem : public PropertyTreeItem
 {
@@ -24,7 +25,7 @@ private:
         auto getter = [this, index]()->Type_t
         {
             Type_t ret;
-            if(m_Uniform.first->getElement(index, ret))
+            if(osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->getElement(index, ret))
             {
                 return ret;
             }
@@ -36,7 +37,7 @@ private:
 
         auto setter = [this, index](Type_t v)
         {
-            m_Uniform.first->setElement(index, v);
+            osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->setElement(index, v);
         };
 
         return new PropertyTreeBaseItem<Type_t>(this, QString::number(index + 1, 10), getter, setter);
@@ -47,7 +48,7 @@ private:
         auto getter = [this, index](size_t i)->Type_t::value_type
         {
             Type_t ret;
-            if(m_Uniform.first->getElement(index, ret))
+            if(osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->getElement(index, ret))
             {
                 return ret[i];
             }
@@ -60,10 +61,10 @@ private:
         auto setter = [this, index](size_t i, Type_t::value_type v)
         {
             Type_t ret;
-            if(m_Uniform.first->getElement(index, ret))
+            if(osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->getElement(index, ret))
             {
                 ret[i] = v;
-                m_Uniform.first->setElement(index, ret);
+                osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->setElement(index, ret);
             }
         };
 
@@ -75,7 +76,7 @@ private:
         auto getter = [this, index](size_t i)->Type_t
         {
             Type_t ret[2];
-            if(m_Uniform.first->getElement(index, ret[0], ret[1]))
+            if(osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->getElement(index, ret[0], ret[1]))
             {
                 return ret[i];
             }
@@ -88,10 +89,10 @@ private:
         auto setter = [this, index](size_t i, Type_t v)
         {
             Type_t ret[2];
-            if(m_Uniform.first->getElement(index, ret[0], ret[1]))
+            if(osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->getElement(index, ret[0], ret[1]))
             {
                 ret[i] = v;
-                m_Uniform.first->setElement(index, ret[0], ret[1]);
+                osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->setElement(index, ret[0], ret[1]);
             }
         };
 
@@ -103,7 +104,7 @@ private:
         auto getter = [this, index](size_t i)->Type_t
         {
             Type_t ret[3];
-            if(m_Uniform.first->getElement(index, ret[0], ret[1], ret[2]))
+            if(osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->getElement(index, ret[0], ret[1], ret[2]))
             {
                 return ret[i];
             }
@@ -116,10 +117,10 @@ private:
         auto setter = [this, index](size_t i, Type_t v)
         {
             Type_t ret[3];
-            if(m_Uniform.first->getElement(index, ret[0], ret[1], ret[2]))
+            if(osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->getElement(index, ret[0], ret[1], ret[2]))
             {
                 ret[i] = v;
-                m_Uniform.first->setElement(index, ret[0], ret[1], ret[2]);
+                osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->setElement(index, ret[0], ret[1], ret[2]);
             }
         };
 
@@ -131,7 +132,7 @@ private:
         auto getter = [this, index](size_t i)->Type_t
         {
             Type_t ret[4];
-            if(m_Uniform.first->getElement(index, ret[0], ret[1], ret[2], ret[3]))
+            if(osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->getElement(index, ret[0], ret[1], ret[2], ret[3]))
             {
                 return ret[i];
             }
@@ -144,10 +145,10 @@ private:
         auto setter = [this, index](size_t i, Type_t v)
         {
             Type_t ret[4];
-            if(m_Uniform.first->getElement(index, ret[0], ret[1], ret[2], ret[3]))
+            if(osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->getElement(index, ret[0], ret[1], ret[2], ret[3]))
             {
                 ret[i] = v;
-                m_Uniform.first->setElement(index, ret[0], ret[1], ret[2], ret[3]);
+                osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->setElement(index, ret[0], ret[1], ret[2], ret[3]);
             }
         };
 

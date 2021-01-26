@@ -14,48 +14,47 @@ public:
     typedef std::function<Type_t()> Getter_t;
     typedef std::function<void(Type_t v)> Setter_t;
 
-    template<typename Type_t>
+    template<typename Type_ItemEditor>
     class ItemEditor
     {
     public:
         static bool createEditor(QWidget*& editor, QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index)
         {
-            (editor);
-            (parent);
-            (option);
-            (index);
+            (void)(editor);
+            (void)(parent);
+            (void)(option);
+            (void)(index);
             return false;
         }
         static bool setEditorData(QWidget* editor,const QModelIndex& index)
         {
-            (editor);
-            (index);
+            (void)(editor);
+            (void)(index);
             return false;
         }
         static bool setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index)
         {
-            (editor);
-            (model);
-            (index);
+            (void)(editor);
+            (void)(model);
+            (void)(index);
             return false;
         }
         static bool updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index)
         {
-            (editor);
-            (option);
-            (index);
+            (void)(editor);
+            (void)(option);
+            (void)(index);
             return false;
         }
     };
 
-    template<>
-    class ItemEditor<bool>
+    class ItemEditorBool
     {
     public:
         static bool createEditor(QWidget*& editor, QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index)
         {
-            (option);
-            (index);
+            (void)(option);
+            (void)(index);
             QComboBox* cb = new QComboBox(parent);
             cb->addItem(tr("true"), true);
             cb->addItem(tr("false"), false);
@@ -81,7 +80,7 @@ public:
         }
         static bool setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index)
         {
-            (model);
+            (void)(model);
             QComboBox* cb = dynamic_cast<QComboBox*>(editor);
             if(nullptr != cb)
             {
@@ -102,7 +101,7 @@ public:
         }
         static bool updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index)
         {
-            (index);
+            (void)(index);
             editor->setGeometry(option.rect);
             return true;
         }
@@ -138,7 +137,7 @@ public:
 
     virtual Qt::ItemFlags flags(int column) const
     {
-        return ((ptcValue == column) ? Qt::ItemIsEditable : 0) | PropertyTreeItem::flags(column);
+        return (Qt::ItemFlags)((ptcValue == column) ? Qt::ItemIsEditable : 0) | PropertyTreeItem::flags(column);
     }
 
     virtual QVariant data(int column, int role) const

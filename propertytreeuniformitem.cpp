@@ -8,7 +8,7 @@ PropertyTreeUniformItem::PropertyTreeUniformItem(PropertyTreeItem *parent, const
     , m_Uniform(i->second)
 {
     {
-        QVariant type(osg::Uniform::getTypename(m_Uniform.first->getType()));
+        QVariant type(osg::Uniform::getTypename(osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->getType()));
         auto getter = [type](const PropertyTreePropertyItem*)->QVariant
         {
             return type;
@@ -18,11 +18,11 @@ PropertyTreeUniformItem::PropertyTreeUniformItem(PropertyTreeItem *parent, const
     {
         auto getter = [this](void)->int
         {
-            return m_Uniform.first->getNumElements();
+            return osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->getNumElements();
         };
         auto setter = [this](int e)
         {
-            m_Uniform.first->setNumElements(e);
+            osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->setNumElements(e);
             UpdateChildProperty();
         };
         m_ChildItems.push_back(new PropertyTreeBaseItem<int>(this, "NumElement", getter, setter));
@@ -57,8 +57,8 @@ QVariant PropertyTreeUniformItem::data(int column, int role) const
 void PropertyTreeUniformItem::UpdateChildProperty()
 {
     const size_t c_NotValueElement = 2;//Type, NumElement
-    auto e = m_Uniform.first->getNumElements() + c_NotValueElement;
-    auto s = m_ChildItems.size();
+    auto e = osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->getNumElements() + c_NotValueElement;
+    auto s = (unsigned long) m_ChildItems.size();
     if(s > e)
     {
         m_ChildItems.erase(m_ChildItems.begin() + e, m_ChildItems.begin() + s);
@@ -68,7 +68,7 @@ void PropertyTreeUniformItem::UpdateChildProperty()
         for(auto i = s; i < e;++i)
         {
             PropertyTreeItem* item = nullptr;
-            switch(m_Uniform.first->getType())
+            switch(osg::dynamic_pointer_cast<osg::Uniform>(m_Uniform.first)->getType())
             {
             case osg::Uniform::FLOAT:
                 item = CreateBaseItem<float>(i - c_NotValueElement);

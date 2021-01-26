@@ -214,8 +214,9 @@ void MainWindow::loadSceneFile(const QString& file)
 
         std::set<osg::Program*> programs;
         std::set<osg::Texture*> textures;
+        ResourceVisitor resourceVisitor(programs, textures);
 
-        newNode->accept(ResourceVisitor(programs, textures));
+        newNode->accept(resourceVisitor);
 
         if(programs.size() > 0)
         {

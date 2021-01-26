@@ -134,3 +134,10 @@ LIBS += \
 
 DISTFILES += \
     glsl/README.txt
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../qscintilla/build-qscintilla-Qt_5_14_2_GCC_64bit-Debug/release/ -lqscintilla2_qt5
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../qscintilla/build-qscintilla-Qt_5_14_2_GCC_64bit-Debug/debug/ -lqscintilla2_qt5
+else:unix: LIBS += -L$$PWD/../qscintilla/build-qscintilla-Qt_5_14_2_GCC_64bit-Debug/ -lqscintilla2_qt5
+
+INCLUDEPATH += $$PWD/../qscintilla/Qt4Qt5
+DEPENDPATH += $$PWD/../qscintilla/Qt4Qt5

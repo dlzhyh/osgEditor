@@ -77,7 +77,7 @@ PropertyTreeItem *PropertyTreeItem::parentItem()
 
 Qt::ItemFlags PropertyTreeItem::flags(int column) const
 {
-    (column);
+    (void)column;
     return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 }
 
@@ -123,73 +123,73 @@ QVariant PropertyTreeItem::data(int column, int role) const
 
 bool PropertyTreeItem::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    (painter);
-    (option);
-    (index);
+    (void)(painter);
+    (void)(option);
+    (void)(index);
     return false;
 }
 
 bool PropertyTreeItem::afterPaint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    (painter);
-    (option);
-    (index);
+    (void)(painter);
+    (void)(option);
+    (void)(index);
     return false;
 }
 
 bool PropertyTreeItem::sizeHint(QSize& size, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    (size);
-    (option);
-    (index);
+    (void)(size);
+    (void)(option);
+    (void)(index);
     return false;
 }
 
 bool PropertyTreeItem::setData(int column, const QVariant &value, int role)
 {
-    (column);
-    (value);
-    (role);
+    (void)column;
+    (void)value;
+    (void)role;
     return false;
 }
 
 bool PropertyTreeItem::editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index)
 {
-    (event);
-    (model);
-    (option);
-    (index);
+    (void)event;
+    (void)model;
+    (void)option;
+    (void)index;
     return false;
 }
 
 bool PropertyTreeItem::createEditor(QWidget*& editor, QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    (editor);
-    (parent);
-    (option);
-    (index);
+    (void)(editor);
+    (void)(parent);
+    (void)(option);
+    (void)(index);
     return false;
 }
 
 bool PropertyTreeItem::setEditorData(QWidget* editor,const QModelIndex& index) const
 {
-    (editor);
-    (index);
+    (void)(editor);
+    (void)(index);
     return false;
 }
 
 bool PropertyTreeItem::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
-    (editor);
-    (model);
-    (index);
+    (void)(editor);
+    (void)(model);
+    (void)(index);
     return false;
 }
 
 bool PropertyTreeItem::updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    (editor);
-    (option);
-    (index);
+    (void)(editor);
+    (void)(option);
+    (void)(index);
     return false;
 }

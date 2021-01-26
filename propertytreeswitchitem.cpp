@@ -44,8 +44,8 @@ QVariant PropertyTreeSwitchItem::data(int column, int role) const
 
 bool PropertyTreeSwitchItem::createEditor(QWidget*& editor, QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index)
 {
-    (option);
-    (index);
+    (void)(option);
+    (void)(index);
     QComboBox* cb = new QComboBox(parent);
     QStandardItemModel* model = new QStandardItemModel(cb);
 
@@ -79,7 +79,7 @@ bool PropertyTreeSwitchItem::setEditorData(QWidget* editor, const QModelIndex& i
 
 bool PropertyTreeSwitchItem::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index)
 {
-    (model);
+    (void)(model);
     PropertyTreeSwitchItem* item = (PropertyTreeSwitchItem*)index.internalPointer();
     if(nullptr != item)
     {
@@ -89,7 +89,7 @@ bool PropertyTreeSwitchItem::setModelData(QWidget* editor, QAbstractItemModel* m
             QStandardItemModel* cbm = dynamic_cast<QStandardItemModel*>(cb->model());
             if(nullptr != cbm)
             {
-                for(size_t i = 0;i < cbm->rowCount();++i)
+                for(auto i = 0;i < cbm->rowCount();++i)
                 {
                     bool value = (Qt::Checked == cbm->item(i)->data(Qt::CheckStateRole));
                     if(item->m_Switch->getValue(i) != value)
@@ -105,7 +105,7 @@ bool PropertyTreeSwitchItem::setModelData(QWidget* editor, QAbstractItemModel* m
 
 bool PropertyTreeSwitchItem::updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index)
 {
-    (index);
+    (void)(index);
     editor->setGeometry(option.rect);
     return true;
 }

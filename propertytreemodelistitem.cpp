@@ -20,7 +20,7 @@ PropertyTreeModeListItem::~PropertyTreeModeListItem()
 
 Qt::ItemFlags PropertyTreeModeListItem::flags(int column) const
 {
-    return ((ptcValue == column) ? Qt::ItemIsEditable : 0) | PropertyTreeItem::flags(column);
+    return (Qt::ItemFlags)((ptcValue == column) ? Qt::ItemIsEditable : 0) | PropertyTreeItem::flags(column);
 }
 
 QVariant PropertyTreeModeListItem::data(int column, int role) const

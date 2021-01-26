@@ -23,7 +23,7 @@ public:
         : PropertyTreeItem(parent)
         , m_Name(name)
     {
-        char* titles[] =
+        const char* titles[] =
         {
             "X",
             "Y",
@@ -40,7 +40,7 @@ public:
         : PropertyTreeItem(parent)
         , m_Name(name)
     {
-        char* titles[] =
+        const char* titles[] =
         {
             "X",
             "Y",
@@ -95,7 +95,7 @@ public:
 
                     ss << "("
                        << dynamic_cast<PropertyTreeBaseItem<Value_t>*>(m_ChildItems[0])->value();
-                    for(size_t i = 1;i < m_ChildItems.size();++i)
+                    for(auto i = 1;i < m_ChildItems.size();++i)
                     {
                         ss << ", "
                            << dynamic_cast<PropertyTreeBaseItem<Value_t>*>(m_ChildItems[i])->value();

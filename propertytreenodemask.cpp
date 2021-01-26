@@ -15,7 +15,7 @@ PropertyTreeNodeMask::~PropertyTreeNodeMask()
 
 Qt::ItemFlags PropertyTreeNodeMask::flags(int column) const
 {
-    return ((ptcValue == column) ? Qt::ItemIsEditable : 0) | PropertyTreeItem::flags(column);
+    return (Qt::ItemFlags)((ptcValue == column) ? Qt::ItemIsEditable : 0) | PropertyTreeItem::flags(column);
 }
 
 QVariant PropertyTreeNodeMask::data(int column, int role) const
@@ -37,8 +37,8 @@ QVariant PropertyTreeNodeMask::data(int column, int role) const
 
 bool PropertyTreeNodeMask::createEditor(QWidget*& editor, QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    (option);
-    (index);
+    (void)(option);
+    (void)(index);
 
     QComboBox* cb = new QComboBox(parent);
     QStandardItemModel* model = new QStandardItemModel(cb);
@@ -81,7 +81,7 @@ bool PropertyTreeNodeMask::setEditorData(QWidget* editor,const QModelIndex& inde
 
 bool PropertyTreeNodeMask::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
-    (model);
+    (void)(model);
     PropertyTreeNodeMask* nm = (PropertyTreeNodeMask*)index.internalPointer();
     if(nullptr != nm)
     {
@@ -92,7 +92,7 @@ bool PropertyTreeNodeMask::setModelData(QWidget* editor, QAbstractItemModel* mod
             if(nullptr != model)
             {
                 osg::Node::NodeMask mask = 0;
-                for(size_t i = 0;i < model->rowCount();++i)
+                for(auto i = 0;i < model->rowCount();++i)
                 {
                     if(Qt::Checked == model->item(i)->data(Qt::CheckStateRole))
                     {
@@ -109,7 +109,7 @@ bool PropertyTreeNodeMask::setModelData(QWidget* editor, QAbstractItemModel* mod
 
 bool PropertyTreeNodeMask::updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    (index);
+    (void)(index);
     editor->setGeometry(option.rect);
     return true;
 }
